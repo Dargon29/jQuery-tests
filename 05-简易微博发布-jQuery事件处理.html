@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery.min.js"></script>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    li {
+        list-style: none;
+    }
+    
+    .box {
+        padding: 10px 20px;
+        width: 500px;
+        border: 1px solid #000;
+    }
+    
+    ul li {
+        display: none;
+        padding-bottom: 5px;
+        margin-left: 69px;
+        width: 304px;
+        font-size: 12px;
+        font-style: italic;
+        border-bottom: 1px solid #ccc;
+    }
+    
+    ul li a {
+        float: right;
+    }
+</style>
+
+<body>
+    <div class="box" id="weibo">
+        <span>微博发布</span>
+        <textarea class="txt" name="" id="" cols="40" rows="5"></textarea>
+        <button class="btn">发布</button>
+        <ul>
+
+        </ul>
+    </div>
+</body>
+<script>
+    $(function() {
+        // 1. 点击事件 发布按钮
+        $('.btn').on('click', function() {
+                // 2. 动态创建 li
+                var li = $('<li></li>');
+                // li 中包含两个部分
+                // 文本框内容 + 删除按钮
+                li.html($('.txt').val() + '<a href="javascript:;"> 删除</a>');
+                // li 追加 到 ul 中
+                $('ul').prepend(li);
+                // li 滑动显示
+                li.slideDown(200);
+                // 文本框内容清空
+                $('.txt').val('');
+            })
+            // 2. 点击事件，删除按钮 , on 给未来动态创建的元素添加事件
+        $('ul').on('click', 'a', function() {
+            $(this).parent().slideUp(200, function() {
+                $(this).remove();
+            });
+        })
+
+    })
+</script>
+
+</html>

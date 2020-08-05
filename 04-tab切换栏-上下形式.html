@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery.min.js"></script>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    li {
+        list-style: none;
+    }
+    
+    a {
+        /* color: #000; */
+        text-decoration: none;
+    }
+    /* 版心 */
+    
+    .w {
+        width: 750px;
+        margin: 100px auto;
+        border: 1px solid #000;
+    }
+    /* hd 模块 */
+    
+    .hd {
+        width: 750px;
+        height: 40px;
+        line-height: 40px;
+        background-color: #f7f7f7;
+        border-bottom: 2px solid #d49fa8;
+        overflow: hidden;
+    }
+    
+    .hd ul li {
+        float: left;
+    }
+    
+    .hd ul li a {
+        font-size: 14px;
+        color: #9999a4;
+        padding: 0 25px;
+    }
+    /*购物车 标签*/
+    
+    .hd .shopcar {
+        display: block;
+        float: right;
+        margin: 10px 40px 0 0;
+        padding: 0 10px;
+        height: 20px;
+        line-height: 20px;
+        font-size: 12px;
+        color: #fff;
+        background-color: red;
+        transition: all ease .5s;
+    }
+    
+    .hd .shopcar:hover {
+        cursor: pointer;
+        border-radius: 5px;
+        box-shadow: 5px 5px 10px #ccc;
+    }
+    
+    .current {
+        color: #fff;
+        background-color: red;
+    }
+    /* content */
+    
+    .content {
+        height: 400px;
+    }
+    
+    .content .items {
+        display: none;
+    }
+</style>
+
+<body>
+    <div class="w">
+        <div class="hd">
+            <ul>
+                <!-- 导航栏 -->
+                <li><a href="#">商品介绍</a></li>
+                <li><a href="#">规格与包装</a></li>
+                <li><a href="#">售后保障</a></li>
+                <li><a href="#">商品评价(3万+)</a></li>
+                <li><a href="#">手机社区</a></li>
+            </ul>
+            <!-- 加入购物车 -->
+            <span class="shopcar">加入购物车</span>
+        </div>
+        <!-- 隐藏模块 -->
+        <div class="content">
+            <div class="items" style="display: block;">商品介绍模块</div>
+            <div class="items">规格与包装模块</div>
+            <div class="items">售后保障模块</div>
+            <div class="items">商品评价模块</div>
+            <div class="items">手机社区模块</div>
+        </div>
+    </div>
+</body>
+<script>
+    // 入口函数
+    $(function() {
+        // 1. 获取伪数组 tab 栏 的 li , 隐式迭代 
+        $('.hd li').click(function() {
+            // 当前选项的样式变化
+            $(this).addClass('current').children('a').css('color', '#fff');
+            // 获取当前选项的 index 索引号
+            var index = $(this).index();
+            // 其余兄弟
+            $(this).siblings('li').removeClass('current').children('a').css('color', '');
+            // 显示，当前选项所对应的 items 模块
+            $('.content .items').eq(index).show();
+            // 其余的兄弟，隐藏
+            $('.content .items').eq(index).siblings('.items').hide();
+
+        })
+    })
+</script>
+
+</html>

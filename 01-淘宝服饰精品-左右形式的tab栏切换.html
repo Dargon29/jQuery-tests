@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>05-案例-淘宝服饰精品(左右形式的tab栏切换)</title>
+    <script src="jquery.min.js"></script>
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    
+    a {
+        text-decoration: none;
+    }
+    
+    li {
+        list-style: none;
+    }
+    /* 版心 */
+    
+    .w {
+        margin: 100PX 200px;
+    }
+    /* wrapper */
+    
+    .wrapper {
+        margin-left: 50px;
+        float: left;
+    }
+    
+    .wrapper ul li {
+        border: 1px solid forestgreen;
+    }
+    
+    .wrapper ul li a {
+        display: inline-block;
+        text-align: center;
+        width: 60px;
+        height: 32px;
+        line-height: 33px;
+        font-size: 14px;
+        color: #fff;
+        background-color: red;
+        transition: all ease .3s;
+    }
+    /* content */
+    
+    .wrapper ul li a:hover {
+        color: #000;
+        font-weight: bold;
+        background-color: #fff;
+        border: 1px solid red;
+    }
+    
+    .content {
+        float: left;
+        width: 270px;
+        height: 306px;
+        overflow: hidden;
+    }
+    
+    .content div {
+        width: 270px;
+        height: 306px;
+        background-color: gold;
+    }
+    
+    .content img {
+        width: 270px;
+        height: 306px;
+    }
+</style>
+
+<body>
+    <div class="w">
+        <div class="wrapper">
+            <ul id="left">
+                <li><a href="#">女鞋</a></li>
+                <li><a href="#">雪地靴</a></li>
+                <li><a href="#">冬裙</a></li>
+                <li><a href="#">大衣</a></li>
+                <li><a href="#">毛衣</a></li>
+                <li><a href="#">棉服</a></li>
+                <li><a href="#">女裤</a></li>
+                <li><a href="#">羽绒服</a></li>
+                <li><a href="#">牛仔裤</a></li>
+            </ul>
+        </div>
+        <div class="content">
+            <div>
+                <a href="#"><img src="taobao-tab-images/nvxie.jpg" alt="" srcset=""></a>
+            </div>
+            <div>
+                <a href="#"><img src="taobao-tab-images/xuedixue.jpg" alt="" srcset=""></a>
+            </div>
+            <div>
+                <a href="#"><img src="taobao-tab-images/dongqun.jpg" alt="" srcset=""></a>
+            </div>
+            <div>
+                <a href="#"><img src="taobao-tab-images/dayi.jpg" alt="" srcset=""></a>
+            </div>
+            <div>
+                <a href="#"><img src="taobao-tab-images/maoyi.jpg" alt="" srcset=""></a>
+            </div>
+            <div>
+                <a href="#"><img src="taobao-tab-images/mianfu.jpg" alt="" srcset=""></a>
+            </div>
+            <div>
+                <a href="#"><img src="taobao-tab-images/nvku.jpg" alt="" srcset=""></a>
+            </div>
+            <div>
+                <a href="#"><img src="taobao-tab-images/yurongfu.jpg" alt="" srcset=""></a>
+            </div>
+            <div>
+                <a href="#"><img src="taobao-tab-images/niuzaiku.jpg" alt="" srcset=""></a>
+            </div>
+
+        </div>
+    </div>
+</body>
+<script>
+    // 入口函数
+    $(function() {
+        // 1. 获取左边 tab 栏的所有 li ，并 隐式迭代 mouseover 事件
+        $('#left li').mouseover(function() {
+            // 2. 获取当前索引号
+            var index = $(this).index();
+
+            // 3. 对应显示当前索引号对应的 右侧图片栏 
+            // 获取所有 div , 通过 .eq() 选择对应的（当前）图片
+            $('.content div').eq(index).stop().fadeIn(100).siblings('div').stop().fadeOut(100);
+
+            // 4.当前 div 的其余兄弟 隐藏
+            /* $('.content div').eq(index).siblings('div').hide(); */
+        })
+    })
+</script>
+
+</html>

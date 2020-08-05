@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>09-fuwa-淡入淡出-透明度-fadeTo(福娃图标，高亮显示)</title>
+    <script src="jquery.min.js"></script>
+</head>
+<style>
+    body {
+        background-color: #000;
+    }
+    
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    li {
+        list-style: none;
+    }
+    
+    a {
+        /* color: #000; */
+        text-decoration: none;
+    }
+    /*外围*/
+    
+    .w {
+        margin: 200px auto;
+        width: 640px;
+        height: 430px;
+        background-color: #000;
+        border: 1px solid #fff;
+    }
+    
+    ul li {
+        margin: 10px 0 0 10px;
+        width: 200px;
+        height: 200px;
+        float: left;
+    }
+    
+    ul li img {
+        width: 200px;
+        height: 200px;
+    }
+</style>
+
+<body>
+    <!-- 外围 -->
+    <div class="w">
+        <ul>
+            <li>
+                <a href="#"><img src="fuwa-images/fuwa01.jpg" alt=""></a>
+            </li>
+            <li>
+                <a href="#"><img src="fuwa-images/fuwa02.jpg" alt=""></a>
+            </li>
+            <li>
+                <a href="#"><img src="fuwa-images/fuwa03.jpg" alt=""></a>
+            </li>
+            <li>
+                <a href="#"><img src="fuwa-images/fuwa04.jpg" alt=""></a>
+            </li>
+            <li>
+                <a href="#"><img src="fuwa-images/fuwa05.jpg" alt=""></a>
+            </li>
+            <li>
+                <a href="#"><img src="fuwa-images/fuwa06.jpg" alt=""></a>
+            </li>
+        </ul>
+    </div>
+</body>
+<script>
+    // 入口函数
+    $(function() {
+
+        // 1. 获取到 li 集合，鼠标经过事件，隐式迭代 ,
+        // $('ul li').mouseover(function() {
+        //     $(this).stop().fadeTo(200, 1).siblings('li').stop().fadeTo(200, .4);
+        // })
+        // $('ul li').mouseout(function() {
+        //     $(this).stop().fadeTo(200, .4);
+        // })
+
+        // 2. 事件切换
+        $('ul li').hover(function() {
+            $(this).siblings('li').stop().fadeTo(200, .5);
+        }, function() {
+            $(this).siblings('li').stop().fadeTo(200, 1);
+        })
+    })
+</script>
+
+</html>
